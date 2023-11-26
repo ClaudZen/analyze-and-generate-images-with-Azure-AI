@@ -1,9 +1,11 @@
 import React from 'react';
-import { analizedImage } from './azure-image-analysis';
-import { generateImage } from './azure-image-generation';
+import { analizedImage, isConfigured as isAnalysisConfigured } from './azure-image-analysis';
+import { generateImage, isConfigured as isGenerationConfigured } from './azure-image-generation';
 
 
 function App() {
+
+  
   // Title of the app
   const title = 'React App';
   // a input text for user can write a url path of image also user can write a requeste of image to generate
@@ -16,6 +18,12 @@ function App() {
   const [results, setResults] = React.useState(null);
   const [imageUrl, setImageUrl] = React.useState('');
 
+  console.log("isAnalysisConfigured"+isAnalysisConfigured());
+  console.log("isGenerationConfigured"+isGenerationConfigured());
+
+  if(!isAnalysisConfigured() || !isGenerationConfigured()) {
+    return ( <p>Clave y/o punto final no configurados para los servicios cognitivos</p> );
+  }
   // Return the App component.
   return (
     <div className="App">
