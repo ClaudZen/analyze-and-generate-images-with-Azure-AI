@@ -32,6 +32,11 @@ jobs:
           api_location: "api" # Api source code path - optional
           output_location: "build" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+          env:
+            REACT_APP_API_URL_AI_ANALIZER_IMAGE: ${{ secrets.REACT_APP_API_URL_AI_ANALIZER_IMAGE }}
+            REACT_APP_API_KEY_AI_ANALIZER_IMAGE: ${{ secrets.REACT_APP_API_KEY_AI_ANALIZER_IMAGE }}
+            REACT_APP_API_ORGANIZATION_OPEN_AI: ${{ secrets.REACT_APP_API_ORGANIZATION_OPEN_AI }}
+            REACT_APP_API_KEY_OPEN_AI: ${{ secrets.REACT_APP_API_KEY_OPEN_AI }}
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
