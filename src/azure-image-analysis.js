@@ -67,3 +67,18 @@ async function readTextFromURL(client, url) {
     // Replace[0] with the desired page if this is a multi-page file such as .pdf or.tiff.
     return result.analyzeResult; 
 }
+
+/* 
+  Function called 'isConfigured' that return true if the key and the url are configured and not null or empty 
+  and return false or true
+*/
+
+export function isConfigured() {
+    if (!process.env.REACT_APP_API_KEY_AI_ANALIZER_IMAGE || !process.env.REACT_APP_API_URL_AI_ANALIZER_IMAGE) {
+      return false;
+    }
+  
+    return true;
+  }
+
+

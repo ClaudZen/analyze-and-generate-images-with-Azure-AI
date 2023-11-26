@@ -20,3 +20,11 @@ export async function generateImage(text) {
 
     return { "prompt": text, "URL": response.data.data[0].url };
 }
+
+export function isConfigured() {
+    if (!process.env.REACT_APP_API_ORGANIZATION_OPEN_AI || !process.env.REACT_APP_API_KEY_OPEN_AI) {
+        return false;
+    }
+
+    return true;
+}
