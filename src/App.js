@@ -1,5 +1,6 @@
 import React from 'react';
 import { analizedImage } from './azure-image-analysis';
+import { generateImage } from './azure-image-generation';
 
 
 function App() {
@@ -40,11 +41,12 @@ function App() {
           {buttonText}
         </button>
         <button
-          onClick={() => {
+          onClick={async () => {
             setButtonTextGenerate('Generando...');
-            setTimeout(() => {
-              setButtonTextGenerate('Generar');
-            }, 2000);
+            const result = await generateImage(inputText);
+            setResults(result);
+            setImageUrl(result.URL);
+            setButtonTextGenerate('Generar');
           }}
         >
           {buttonTextGenerate}
