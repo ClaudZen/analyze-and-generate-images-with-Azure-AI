@@ -36,7 +36,7 @@ export async function analizedImage(url) {
         new ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': key } }), uriBase);
 
     // analyze image
-    const analysis = computerVisionClient.analyzeImage(url, { visualFeatures });
+    const analysis = await computerVisionClient.analyzeImage(url, { visualFeatures });
 
     // text detected - what does it say and where is it
     if (includesText(analysis.tags) || includesHandwriting(analysis.tags)) {
