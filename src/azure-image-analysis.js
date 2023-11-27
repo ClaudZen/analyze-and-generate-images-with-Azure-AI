@@ -8,7 +8,6 @@ const key = process.env.REACT_APP_API_KEY_AI_ANALIZER_IMAGE;
 const visualFeatures = [
     "Description",
     "Tags",
-
 ];
 
 // Computer Vision detected Printed Text
@@ -37,8 +36,9 @@ export async function analizedImage(url) {
         new ApiKeyCredentials({ inHeader: { 'Ocp-Apim-Subscription-Key': key } }), uriBase);
 
     // analyze image
-    const analysis = await computerVisionClient.analyzeImage(url, { visualFeatures });
+    const analysis = computerVisionClient.analyzeImage(url, { visualFeatures });
 
+    // text detected - what does it say and where is it
     if (includesText(analysis.tags) || includesHandwriting(analysis.tags)) {
         analysis.text = await readTextFromURL(computerVisionClient, url);
     }
@@ -51,10 +51,6 @@ async function readTextFromURL(client, url) {
     
     let result = await client.read(url);
     let operationID = result.operationLocation.split('/').slice(-1)[0];
-
-    // Wait for read recognition to complete
-    // result.status is initially undefined, since it's the result of read
-    const start = Date.now();
     
     while (result.status !== "succeeded") {
         await wait(500);
