@@ -18,9 +18,6 @@ function App() {
   const [results, setResults] = React.useState(null);
   const [imageUrl, setImageUrl] = React.useState('');
 
-  console.log("isAnalysisConfigured"+isAnalysisConfigured());
-  console.log("isGenerationConfigured"+isGenerationConfigured());
-
   if(!isAnalysisConfigured() || !isGenerationConfigured()) {
     return ( <p>Clave y/o punto final no configurados para los servicios cognitivos</p> );
   }
@@ -40,7 +37,6 @@ function App() {
           onClick={async () => {
             setButtonText('Analizando...');
             const analysis = await analizedImage(inputText);
-            console.log(analysis);
             setResults(analysis);
             setImageUrl(analysis.URL);
             setButtonText('Analizar');

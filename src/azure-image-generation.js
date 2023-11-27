@@ -4,7 +4,6 @@ const organization = process.env.REACT_APP_API_ORGANIZATION_OPEN_AI;
 const key = process.env.REACT_APP_API_KEY_OPEN_AI;
 
 export async function generateImage(text) {
-    console.log(key);
     const configuration = new Configuration({
         organization: organization,
         apiKey: key,
